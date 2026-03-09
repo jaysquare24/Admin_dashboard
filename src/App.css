@@ -1,0 +1,35 @@
+#root {
+  max-width: 1280px;
+}
+
+/*HEADER*/
+
+.top-bar{
+  display: flex;
+  border: 1px solid black;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+
+
+.side-bar{
+  border: 2px solid green;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: absolute;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.carts{
+  height: 100vh;
+  color: yellow;
+  border: 2px solid white;
+}
