@@ -11,17 +11,17 @@ export const Layout = () => {
     }
   return (
     <div className="layout">
-      <header>
-        <TopBar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-      </header>
-      {isSidebarOpen && (
-        <aside onClick={toggleSidebar}>
+        <aside className={`sidebar-container ${isSidebarOpen ? 'open' : ''}`}>
           <SideBar />
         </aside>
-      )}
-      <main className="content">
-        <Outlet />
-      </main>
+        <div className="global-container">
+            <header>
+                <TopBar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+            </header>
+            <main className="content">
+                <Outlet />
+            </main>
+        </div>
     </div>
   )
 }
