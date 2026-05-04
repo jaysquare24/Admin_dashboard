@@ -14,6 +14,10 @@ export const TopBar = ({toggleSidebar}) => {
   const { handleAddProduct, products } = useProducts();
   const location = useLocation()
   const { searchTerm, setSearchTerm } = useSearch(); 
+
+  const handleFutureFeature = () => {
+    alert("This feature is not implemented in the demo version.")
+  }
   
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -39,8 +43,8 @@ export const TopBar = ({toggleSidebar}) => {
       </div>
       )}
       <nav className="top-bar-right">  
-        <NavLink to="/notifications"><FiBell className="icon" /></NavLink>
-        <NavLink to="/settings"><FaUserCircle className="icon" /></NavLink> 
+        <NavLink onClick={handleFutureFeature} ><FiBell className="icon" /></NavLink>
+        <NavLink onClick={handleFutureFeature}><FaUserCircle className="icon" /></NavLink> 
         <button className="menu-btn" onClick={toggleSidebar}>
           ☰
         </button>  
