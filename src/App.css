@@ -696,19 +696,19 @@
   cursor: pointer;
 }
 
-.success-message{
+.success-message {
   position: absolute;
-  top: 0.5%;
+  top: 50%;              
+  left: 50%;            
+  transform: translate(-50%, -50%);  
+
   background-color: #ffffff;
-  font-family: "Inter",sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
-  left: 0;
-  right: 0;
   padding: 20px 15px;
   width: 70%;
   max-width: 400px;
-  color:rgb(10, 193, 25);
-  margin: auto;
+  color: rgb(10, 193, 25);
   border-radius: 10px;
   text-align: center;
 }
@@ -852,7 +852,7 @@
     font-size: 12px;
   }
 
-  .modal-container {
+  .modal-container, .modal-content {
     width: 100%;
     height: 100%;
     border-radius: 0;
@@ -909,10 +909,10 @@
     overflow-y: auto;
  }
 
- .user-list{
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 20px;
-  margin-top: 20px;
-}
+  .user-list{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
 }
