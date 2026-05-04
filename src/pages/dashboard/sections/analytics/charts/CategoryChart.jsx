@@ -8,14 +8,12 @@ import {
   ResponsiveContainer
 } from "recharts";
 
-const data = [
-  { category: "Electronics", products: 20 },
-  { category: "Clothing", products: 35 },
-  { category: "Shoes", products: 15 },
-  { category: "Accessories", products: 10 }
-];
+import { getCategoryChart } from "../../../../../utils/chartUtils";
 
-export const CategoryChart = () => {
+export const CategoryChart = ({products}) => {
+
+    const data = getCategoryChart(products);
+
   return (
 
       <ResponsiveContainer width="100%" height={300}>
@@ -24,7 +22,7 @@ export const CategoryChart = () => {
           <XAxis dataKey="category" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="products" fill="#22c55e" />
+          <Bar dataKey="count" fill="#4f46e5" />
         </BarChart>
       </ResponsiveContainer>
    

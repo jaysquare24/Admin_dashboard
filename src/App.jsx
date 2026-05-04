@@ -4,7 +4,7 @@ import { Layout } from './components/layout/Layout'
 import { Dashboard } from './pages/dashboard/Dashboard'
 import { Products } from './pages/products/Products'
 import { Users } from './pages/users/Users'
-import { Carts } from './pages/carts/Carts'
+import { CartPage } from './pages/carts/CartPage'
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="products" element={<Products />} />
             <Route path="users" element={<Users />} />
-            <Route path="carts" element={<Carts />} />
+            <Route path="carts" element={<CartPage />} />
           </Route>
         </Routes>
       
