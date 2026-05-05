@@ -3,7 +3,7 @@ import { ProductItems } from "./sections/ProductItems";
 import { useState, useEffect, use } from "react";
 import { Pagination } from "../../components/common/Pagination";
 import { updateProduct } from "../../services/productService";
-import { useSearch } from "../../context/SearchContext";
+import { useOutletContext } from "react-router-dom";
 import { ProductFilters } from "./sections/ProductFilters";
 import { useDebounce } from "../../hook/useDebounce";
 import { useFilteredItems } from "../../hook/useFilteredItems";
@@ -16,7 +16,7 @@ export const Products = () => {
   const { products, handleUpdateProduct, handleDeleteProduct, loading, error, successMessage } = useProducts();
   const [editingProduct, setEditingProduct] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const { searchTerm, setSearchTerm } = useSearch();
+  const { searchTerm, clearSearchTerm } = useOutletContext();
     
   const normalizedSearchTerm = searchTerm ? searchTerm.toLowerCase() : "";
 
@@ -51,7 +51,7 @@ export const Products = () => {
           setEditingProduct={setEditingProduct} 
           searchTerm={searchTerm} 
         />
-        <Button className="go-back-button" onClick={() => setSearchTerm("")}> Go Back</Button>
+        <Button className="go-back-button" onClick={clearSearchTerm}> Go Back</Button>
       </div>) 
         
       :(

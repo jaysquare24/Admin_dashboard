@@ -4,16 +4,16 @@ import { FiBell } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { SearchBar } from "../../common/SearchBar";
 import { Button } from "../../common/Button";
-import { useSearch } from "../../../context/SearchContext";
 import { Modal } from "../../common/modal/Modal";
 import { AddProductForm } from "../../common/modal/children/AddProductForm";
 import { useProducts } from "../../../context/ProductContext";
 
-export const TopBar = ({toggleSidebar}) => {
+export const TopBar = ({toggleSidebar, onChangeSearchTerm, searchTerm}) => {
   const  [isOpen, setIsOpen] = useState(false);
   const { handleAddProduct, products } = useProducts();
   const location = useLocation()
-  const { searchTerm, setSearchTerm } = useSearch(); 
+
+  const pageKey = location.pathname.includes("/users") ? "users" : location.pathname.includes("/products") ? "products" : null;
 
   const handleFutureFeature = () => {
     alert("This feature is not implemented in the demo version.")
@@ -33,13 +33,16 @@ export const TopBar = ({toggleSidebar}) => {
 
   return (
     <header className="top-bar">
-      {location.pathname !== "/products" &&
-      <h1 className="logo">StoreMetrics</h1>}
-      {location.pathname == "/products" && (
+      {!pageKey && <h1 className="logo">StoreMetrics</h1>}
+      {pageKey && (
       <div className="top-bar-left">
-        <SearchBar searchTerm={searchTerm} onSearchChange={handleChange} />
-        <Button onClick={handleAddProductButton}>Add Product</Button>
-        <Button onClick={handleAddProductButton} className={'mobile-add'}>+</Button>
+        <SearchBar searchTerm={searchTerm} onSearchChange={onChangeSearchTerm} placeholder={pageKey==="users"? "Search by username": ""} />
+        {pageKey === "products" && (
+          <>
+            <Button onClick={handleAddProductButton}>Add Product</Button>
+            <Button onClick={handleAddProductButton} className={'mobile-add'}>+</Button>
+          </>
+        )}
       </div>
       )}
       <nav className="top-bar-right">  

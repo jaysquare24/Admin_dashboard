@@ -4,7 +4,7 @@ export const UserCard = ({user, isActive, onToggleUserStatus, onDeleteUser}) => 
             <p className="user-name">{`${user?.name?.firstname} ${user?.name?.lastname}`}</p>
             <div className="user-info">
                 <p>Username: {user.username}</p>
-                <p>Status: {isActive ? "Active" : "Inactive"}</p>
+                <p>Status: <span className={isActive ? "status-active" : "status-inactive"}>{isActive ? "Active" : "Inactive"}</span></p>
                 <p>Email: {user.email}</p>
                 <p>Phone: {user.phone}</p>
                 <p>Role: Customer</p> 

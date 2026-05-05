@@ -3,17 +3,28 @@ import { useGetUser } from "../../hook/useGetUser";
 import { useState, useEffect } from "react";
 import { Loader } from "../../components/common/Loader";
 import { ErrorState } from "../../components/common/ErrorState";
+import { useOutletContext } from "react-router-dom";
+import { useFilteredItems } from "../../hook/useFilteredItems";
+import { useDebounce } from "../../hook/useDebounce";
+import { Button } from "../../components/common/Button";
 
 export const Users = () => {
   const { users, error, isLoading } = useGetUser();
-
+  const {searchTerm, clearSearchTerm} = useOutletContext();  
   const [iuUsers, setIuUsers] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [userStatus, setUserStatus] = useState({});
 
-  useEffect(() => {
+  const normalizedSearchTerm = searchTerm ? searchTerm.toLowerCase() : "";
+  const filteredUsers = useFilteredItems(users, useDebounce(normalizedSearchTerm));
+
+ useEffect(() => {
+  if (!normalizedSearchTerm) {
     setIuUsers(users);
-  }, [users]);
+  } else {
+    setIuUsers(filteredUsers);
+  }
+}, [filteredUsers, users, normalizedSearchTerm]);
 
   const onDeleteUser = (userId) => {
     setIuUsers((prevUsers) =>
@@ -70,6 +81,12 @@ export const Users = () => {
             />
           ))}
       </div>
+
+      {normalizedSearchTerm && (
+        <Button className="go-back-button" onClick={clearSearchTerm}>
+          Go Back
+        </Button>
+      )}
     </section>
   );
 };

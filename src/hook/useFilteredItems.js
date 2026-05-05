@@ -1,14 +1,23 @@
-import { useMemo } from "react"
+import { useMemo } from "react";
 
-
-export const useFilteredItems = (items = [], searchTerm) => {
-    
+export const useFilteredItems = (items = [], searchTerm = "") => {
    const filteredItems = useMemo(() => {
-      if(!items) return [];
-      return items.filter(item => item.title && item.title.toLowerCase().includes(searchTerm))
-        
-    }, [items, searchTerm]);
+    if (!searchTerm) return items;
 
-   return filteredItems;
+    return items.filter((item) => {
+      // Product fields
+      if (item.title) {
+        return item.title.toLowerCase().includes(searchTerm);
+      }
 
-}
+      // User fields
+      if (item.username) {
+        return item.username.toLowerCase().includes(searchTerm);
+      }
+
+      return false;
+    });
+   }, [items, searchTerm]);
+
+  return filteredItems;
+};
